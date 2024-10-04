@@ -1,9 +1,3 @@
-const titleInput = document.getElementById('title')
-const authorInput = document.getElementById('author')
-const pagesInput = document.getElementById('pages')
-const newBookBtn = document.getElementById('new-book')
-const submitBook = document.querySelector('form')
-
 const myLibrary = []
 let idCounter = 0
 
@@ -76,9 +70,9 @@ function getBookHtml(book) {
 
 //take user's input and store new book objects into array
 function addBookToLibrary() {
-    let title = titleInput.value
-    let author = authorInput.value
-    let pages = pagesInput.value
+    let title = document.getElementById('title').value
+    let author = document.getElementById('author').value
+    let pages = document.getElementById('pages').value
     let read = document.getElementById('read').checked
     const newBook = new Book(title, author, pages, read)
 
@@ -88,17 +82,17 @@ function addBookToLibrary() {
 }
 
 function displayForm() {
-    submitBook.style.display = 'block'
+    document.querySelector('form').style.display = 'block'
 }
 
 function handleSubmission(e) {
     e.preventDefault()
     addBookToLibrary()
-    submitBook.reset()
+    document.querySelector('form').reset()
 }
 
-newBookBtn.addEventListener('click', displayForm)
-submitBook.addEventListener('submit', handleSubmission)
+document.getElementById('new-book').addEventListener('click', displayForm)
+document.querySelector('form').addEventListener('submit', handleSubmission)
 
 updateList()
 
