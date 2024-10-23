@@ -37,7 +37,6 @@ myLibrary.push(theHobbit, grapesOfWrath, conquistadora, animalFarm)
 function removeBook(bookIndex) {
     myLibrary.splice(bookIndex, 1)
     updateList()
-    console.log(myLibrary)
 }
 
 // Remove Data attribute event listner:
@@ -45,6 +44,9 @@ document.addEventListener('click', (e) => {
     if (e.target.dataset.remove) {
         removeBook(e.target.dataset.remove)
     } 
+    if (e.target.dataset.read) {
+        toggleRead(e.target.dataset.read)
+    }
 })
 
 function updateList() {
@@ -62,7 +64,7 @@ function getBookHtml(book) {
 
     displayedBook.innerHTML += `
         <button id="remove-btn" data-remove="${myLibrary.indexOf(book)}">Remove</button>
-        <button id="read-btn" onclick="toggleRead(${myLibrary.indexOf(book)})">${book.read ? 'Read' : 'Not read yet'}</button>
+        <button id="read-btn" data-read="${myLibrary.indexOf(book)}">${book.read ? 'Read' : 'Not read yet'}</button>
     `
 
     document.getElementById('books').append(displayedBook)
